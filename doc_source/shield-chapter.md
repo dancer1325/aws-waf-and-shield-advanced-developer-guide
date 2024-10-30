@@ -1,7 +1,23 @@
 # AWS Shield<a name="shield-chapter"></a>
 
-Protection against Distributed Denial of Service \(DDoS\) attacks is of primary importance for your internet\-facing applications\. When you build your application on AWS, you can make use of protections that AWS provides at no additional cost\. Additionally, you can use the AWS Shield Advanced managed threat protection service to improve your security posture with additional DDoS detection, mitigation, and response capabilities\. 
+* AWS Shield
+  * provides
+    * 👀-- protection against -- distributed denial of service \(DDoS\) attacks -- for -- AWS resources | 👀
+      * network (layer 3)
+      * transport layers (layer 4)
+      * application layer \(layer 7\)
+        * -> uses
+          * internet-facing applications
+  * pricing
+    * protections / AWS provides
+      * NO additional cost
+* AWS Shield Advanced
+  * provides
+    * additional DDoS detection,
+    * mitigation,
+    * response capabilities 
 
+* TODO:
 AWS is committed to providing you with the tools, best practices, and services to help ensure high availability, security, and resiliency in your defense against bad actors on the internet\. This guide is provided to help IT decision makers and security engineers understand how to use Shield and Shield Advanced to better protect their applications from DDoS attacks and other external threats\. 
 
 When you build your application on AWS, you receive automatic protection by AWS against common volumetric DDoS attack vectors, like UDP reflection attacks and TCP SYN floods\. You can leverage these protections to ensure the availability of the applications that you run on AWS by designing and configuring your architecture for DDoS resiliency\. 
