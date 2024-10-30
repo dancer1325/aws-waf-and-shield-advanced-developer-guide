@@ -7,7 +7,7 @@
     * create rules / define
       * traffic patterns / look for | requests
       * actions / take | matching requests
-        * possible actions
+        * 👀possible actions 👀
           * Allow the requests -- to go to the -- protected resource
             * == processing and response
           * Block the requests
