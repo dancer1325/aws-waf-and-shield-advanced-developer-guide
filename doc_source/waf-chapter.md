@@ -5,7 +5,7 @@
     * lets you
       * monitor the HTTP\(S\) requests /
         * -- are forwarded to -- your protected web application resources
-        * resource types / can be protected 
+        * 👀resource types / can be protected 👀
           + Amazon CloudFront distribution
           + Amazon API Gateway REST API
           + Application Load Balancer
