@@ -1,12 +1,21 @@
 # How AWS WAF works<a name="how-aws-waf-works"></a>
 
-You use AWS WAF to control how your protected resources respond to HTTP\(S\) web requests\. You do this by defining a web access control list \(ACL\) and then associating it with one or more web application resources that you want to protect\. The associated resources forward incoming requests to AWS WAF for inspection by the web ACL\. 
-
-In your web ACL, you create rules to define traffic patterns to look for in requests and to specify the actions to take on matching requests\. The action choices include the following: 
-+ Allow the requests to go to the protected resource for processing and response\. 
-+ Block the requests\. 
-+ Count the requests\. 
-+ Run CAPTCHA or challenge checks against requests to verify human users and standard browser use\. 
+* goal of AWS WAF
+  * control how your protected resources -- respond to -- HTTP\(S\) web requests
+* steps to get it
+  * define a web access control list \(ACL\)
+    * create rules / define
+      * traffic patterns / look for | requests
+      * actions / take | matching requests
+        * possible actions
+          * Allow the requests -- to go to the -- protected resource
+            * == processing and response
+          * Block the requests
+          * Count the requests
+          * Run CAPTCHA or challenge checks -- against -- requests
+            * Reason: 🧠 verify human users & standard browser use 🧠
+  * associate ACLs -- with -- >=1 web application resources / you want to protect
+    * associated resources -- will forward, by inspecting the web ACL, incoming requests to -- AWS WAF
 
 **Topics**
 + [AWS WAF components](how-aws-waf-works-components.md)
