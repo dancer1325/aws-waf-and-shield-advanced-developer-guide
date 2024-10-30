@@ -1,17 +1,30 @@
 # AWS WAF<a name="waf-chapter"></a>
 
-AWS WAF is a web application firewall that lets you monitor the HTTP\(S\) requests that are forwarded to your protected web application resources\. You can protect the following resource types: 
-+ Amazon CloudFront distribution
-+ Amazon API Gateway REST API
-+ Application Load Balancer
-+ AWS AppSync GraphQL API
-+ Amazon Cognito user pool
-+ AWS App Runner service
-
-AWS WAF lets you control access to your content\. Based on criteria that you specify, such as the IP addresses that requests originate from or the values of query strings, the service associated with your protected resource responds to requests either with the requested content, with an HTTP 403 status code \(Forbidden\), or with a custom response\. 
-
-**Note**  
-You can also use AWS WAF to protect your applications that are hosted in Amazon Elastic Container Service \(Amazon ECS\) containers\. Amazon ECS is a highly scalable, fast container management service that makes it easy to run, stop, and manage Docker containers on a cluster\. To use this option, you configure Amazon ECS to use an Application Load Balancer that is enabled for AWS WAF to route and protect HTTP\(S\) layer 7 traffic across the tasks in your service\. For more information, see [Service Load Balancing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html) in the *Amazon Elastic Container Service Developer Guide*\.
+* AWS WAF
+  * := web application firewall /
+    * lets you
+      * monitor the HTTP\(S\) requests /
+        * -- are forwarded to -- your protected web application resources
+        * resource types / can be protected 
+          + Amazon CloudFront distribution
+          + Amazon API Gateway REST API
+          + Application Load Balancer
+          + AWS AppSync GraphQL API
+          + Amazon Cognito user pool
+          + AWS App Runner service
+          + applications / hosted | Amazon ECS containers
+            + requirements
+              + configure ECS -- with an -- Application Load Balancer / -- enabled for -- AWS WAF
+                + see [Service Load Balancing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
+      * control access -- to your -- content
+        * -- based on -- criteria / you specify
+          * _Example:_
+            * IP addresses / requests originate from
+            * values of query strings
+    * service -- associated with -- your protected resource -> responds to requests with the
+      * requested content, or
+      * HTTP 403 status code \(Forbidden\), or
+      * custom response
 
 **Topics**
 + [How AWS WAF works](how-aws-waf-works.md)
