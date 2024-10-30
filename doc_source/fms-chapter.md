@@ -1,17 +1,30 @@
 # AWS Firewall Manager<a name="fms-chapter"></a>
 
-AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall\. With Firewall Manager, you set up your protections just once and the service automatically applies them across your accounts and resources, even as you add new accounts and resources\. 
-
-Firewall Manager provides these benefits:
-+ Helps to protect resources across accounts
-+ Helps to protect all resources of a particular type, such as all Amazon CloudFront distributions
-+ Helps to protect all resources with specific tags
-+ Automatically adds protection to resources that are added to your account
-+ Allows you to subscribe all member accounts in an AWS Organizations organization to AWS Shield Advanced, and automatically subscribes new in\-scope accounts that join the organization
-+ Allows you to apply security group rules to all member accounts or specific subsets of accounts in an AWS Organizations organization, and automatically applies the rules to new in\-scope accounts that join the organization
-+ Lets you use your own rules, or purchase managed rules from AWS Marketplace
-
-Firewall Manager is particularly useful when you want to protect your entire organization rather than a small number of specific accounts and resources, or if you frequently add new resources that you want to protect\. Firewall Manager also provides centralized monitoring of DDoS attacks across your organization\.
+* AWS Firewall Manager
+  * allows
+    * simplifies your administration of protections / ACROSS MULTIPLE accounts & resources
+      * AWS WAF,
+      * AWS Shield Advanced,
+      * Amazon VPC security groups,
+      * AWS Network Firewall,
+      * Amazon Route 53 Resolver DNS Firewall
+    * 👀== set up your protections 1! -> automatically applies them ACROSS your accounts & resources 👀
+      * _Example of simplifications:_ 
+        * protect ALL resources of a particular type (_Example:_ Amazon CloudFront distributions)
+        * protect ALL resources -- with -- specific tags
+        * adds protection to resources / are added | your account
+        * subscribe ALL member accounts | AWS Organizations organization -- to -- AWS Shield Advanced
+        * apply security group rules |
+          * ALL member accounts or
+          * specific AWS Organizations organization's subsets of accounts
+        * use
+          * your OWN rules, or
+          * purchase managed rules -- from -- AWS Marketplace
+    * centralized monitoring of DDoS attacks / ACROSS your organization
+  * use cases
+    * protect your WHOLE organization
+      * != small number of specific accounts and resources
+    * if you frequently add new resources that you want to protect
 
 **Topics**
 + [AWS Firewall Manager pricing](aws-fms-pricing.md)
