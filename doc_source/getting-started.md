@@ -1,14 +1,23 @@
 # Getting started with AWS WAF<a name="getting-started"></a>
 
-This tutorial shows how to use AWS WAF to perform the following tasks:
-+ Set up AWS WAF\.
-+ Create a web access control list \(web ACL\) using the wizard in the AWS WAF console\. 
-+ Choose the AWS resources that you want AWS WAF to inspect web requests for\. This tutorial covers the steps for Amazon CloudFront\. The process is essentially the same for an Amazon API Gateway REST API, an Application Load Balancer, an AWS AppSync GraphQL API, Amazon Cognito user pool, or an AWS App Runner service\. 
-+ Add the rules and rule groups that you want to use to filter web requests\. For example, you can specify the IP addresses that the requests originate from and specify values in the request that are used only by attackers\. For each rule, you specify how to handle matching web requests\. You can do things like block or count them and you can run bot challenges like CAPTCHA\. You define an action for each rule that you define inside a web ACL and for each rule that you define inside a rule group\. 
-+ Specify a default action for the web ACL, either `Block` or `Allow`\. This is the action that AWS WAF takes on a request when the rules in the web ACL don't explicitly allow or block it\. 
-
-**Note**  
-AWS typically bills you less than US $0\.25 per day for the resources that you create during this tutorial\. When you're finished with the tutorial, we recommend that you delete the resources to prevent incurring unnecessary charges\. 
+* goal
+  + Set up AWS WAF
+  + Create a web ACL
+    + -- via -- the wizard | AWS WAF console
+  + Choose the AWS resources / you want AWS WAF -- to inspect -- web requests for
+    + _Example:_ this tutorial for Amazon CloudFront
+      + == for others
+  + Add the rules & rule groups / used to filter web requests 
+    + == how to handle matching web requests / EACH rule
+    + rules are defined / rule group 
+  + Specify a default action -- for the -- web ACL
+    + allowed 
+      + `Block`
+      + `Allow`
+    + == action / if rules | web ACL NOT specified -> used
+  + pricing (for this tutorial)
+    + < US $0\.25 / day -- for the -- resources / you create
+      + once you finish the tutorial -> delete the resources 
 
 **Topics**
 + [Step 1: Set up AWS WAF](#getting-started-aws-account)
@@ -20,14 +29,17 @@ AWS typically bills you less than US $0\.25 per day for the resources that you c
 
 ## Step 1: Set up AWS WAF<a name="getting-started-aws-account"></a>
 
-If you haven't already followed the general setup steps in [Setting up](setting-up-waf.md), do that now\. 
+* see [Setting up](setting-up-waf.md) 
 
 ## Step 2: Create a Web ACL<a name="getting-started-wizard-create-web-acl"></a>
 
-The AWS WAF console guides you through the process of configuring AWS WAF to block or allow web requests based on criteria that you specify, such as the IP addresses that the requests originate from or values in the requests\. In this step, you create a web ACL\. For more information about AWS WAF web ACLs, see [Web access control lists \(web ACLs\)](web-acl.md)\.
+* use AWS WAF console
+  * guides you -- through the -- process
+* see [Web access control lists \(web ACLs\)](web-acl.md)
 
 **To create a web ACL**
 
+* TODO:
 1. Sign in to the AWS Management Console and open the AWS WAF console at [https://console\.aws\.amazon\.com/wafv2/](https://console.aws.amazon.com/wafv2/)\. 
 
 1. From the AWS WAF home page, choose **Create web ACL**\. 
