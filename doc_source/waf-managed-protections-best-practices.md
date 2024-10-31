@@ -1,24 +1,71 @@
 # Best practices for intelligent threat mitigation<a name="waf-managed-protections-best-practices"></a>
 
-Follow the best practices in this section for the most efficient, cost\-effective implementation of the intelligent threat mitigation features\. 
-+ **Implement the JavaScript and mobile application integration SDKs** – Implement application integration to enable the full set of ATP or Bot Control functionality in the most effective way possible\. The managed rule groups use the tokens provided by the SDKs to separate legitimate client traffic from unwanted traffic at the session level\. The application integration SDKs ensure that these tokens are always available\. For details, see [Why you should use the application integration SDKs with Bot Control](waf-bot-with-tokens.md) and [Why you should use the application integration SDKs with ATP](waf-atp-with-tokens.md)\. 
-
-  To implement the SDKs, see [AWS WAF client application integration](waf-application-integration.md)\.
-+ **Limit the requests that you send to the ATP and Bot Control rule groups** – You incur additional fees for using the intelligent threat mitigation AWS Managed Rules rule groups\. The Bot Control rule group inspects every request that reaches it in the web ACL evaluation\. The ATP rule group only inspects login requests, but if you plan to reject login requests for reasons such as geographic origin, run those rules before the ATP rule group\. 
-
-  Consider the following approaches to reduce your use of these rule groups: 
-  + Exclude requests from inspection with a scope\-down statement in the managed rule group statement\. You can do this with any nestable statement\. For information, see [Scope\-down statements](waf-rule-scope-down-statements.md)\.
-  + Exclude requests from inspection by adding rules before the rule group\. For rules that you can't use in a scope\-down statement and for more complex situations, such as labeling followed by label matching, you might need to add rules that run before the rule groups\. For information, see [Scope\-down statements](waf-rule-scope-down-statements.md) and [AWS WAF rule statements](waf-rule-statements.md)\.
-  + Run the rule groups after less expensive rules\. If you have other standard AWS WAF rules that block requests for any reason, run them before these paid rule groups\. For more information about rules and rule management, see [AWS WAF rule statements](waf-rule-statements.md)
-  + If you're using both the ATP and Bot Control rule groups, run the Bot Control rule group first\. It's the less expensive rule group\.
-
-  For detailed pricing information, see [AWS WAF Pricing](http://aws.amazon.com/waf/pricing/)\.
-+ **For distributed denial of service \(DDoS\) protection, use Shield Advanced automatic application layer DDoS mitigation** – The intelligent threat mitigation rule groups don't provide DDoS protection\. ATP protects against acount takeover attempts to your login page\. Bot Control focuses on enforcing human\-like access patterns using tokens and dynamic rate limiting on client sessions\.
-
-  When you use Shield Advanced with automatic application layer DDoS mitigation enabled, Shield Advanced automatically responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF mitigations on your behalf\. For more information about Shield Advanced, see [AWS Shield Advanced overview](ddos-advanced-summary.md), and [AWS Shield Advanced application layer \(layer 7\) protections](ddos-app-layer-protections.md)\.
-+ **Tune and configure token handling** – Adjust the web ACL's token handling for the best user experience\. 
-  + To reduce operating costs and improve your end user's experience, tune your token management immunity times to the longest that your security requirements permit\. This keeps the use of CAPTCHA puzzles and silent challenges to a minimum\. For information, see [Timestamp expiration: token immunity times](waf-tokens-immunity-times.md)\.
-  + To enable token sharing between protected applications, configure a token domain list for your web ACL\. For information, see [Token domains and domain lists](waf-tokens-domains.md)\.
-+ **Reject requests with arbitrary host specifications** – Configure your protected resources to require that the `Host` headers in web requests match the targeted resource\. You can accept one value or a specific set of values, for example `myExampleHost.com` and `www.myExampleHost.com`, but don’t accept arbitrary values for the host\. 
-+ **For Application Load Balancers that are origins for CloudFront distributions, configure CloudFront and AWS WAF for proper token handling** – If you associate your web ACL to an Application Load Balancer and you deploy the Application Load Balancer as the origin for a CloudFront distribution, see [Configuration required for Application Load Balancers that are CloudFront origins](waf-tokens-with-alb-and-cf.md)\.
-+ **Test and tune before deploying** – Before you implement any changes to your web ACL, follow the testing and tuning procedures in this guide to be sure that you're getting the behavior you expect\. This is especially important for these paid features\. For general guidance, see [Testing and tuning your AWS WAF protections](web-acl-testing.md)\. For information specific to the paid managed rule groups, see [Testing and deploying AWS WAF Bot Control](waf-bot-control-deploying.md) and [Testing and deploying ATP](waf-atp-deploying.md)\.
+* purposes of these best practices
+  * most efficient,
+  * cost-effective
+* best practices
+  + **Implement the JavaScript & mobile application integration SDKs**
+    + enable the full set of ATP or Bot Control functionality
+    + application integration SDKs
+      + -- provide the -- tokens /
+        + ALWAYS available
+        + -- used by the -- managed rule groups, to separate | session level
+          + legitimate client traffic vs unwanted traffic
+    + see
+      + [Why you should use the application integration SDKs with Bot Control](waf-bot-with-tokens.md)
+      + [Why you should use the application integration SDKs with ATP](waf-atp-with-tokens.md)
+      + [AWS WAF client application integration](waf-application-integration.md)
+  + **Limit the requests / you -- send to the -- ATP & Bot Control rule groups**
+    + if you use intelligent threat mitigation AWS Managed Rules rule groups -> additional fees
+    + Bot Control rule group -- inspects -- EVERY request / reaches it | web ACL evaluation
+    + 👀ATP rule group -- inspects -- ONLY login requests 👀
+      + if you plan to reject login requests (_Example:_ -- based on -- geographic origin) -> run those rules | before the ATP rule group
+    + approaches 
+      + exclude requests -- from -- inspection /
+        + scope-down statement | managed rule group statement
+          + see [Scope\-down statements](waf-rule-scope-down-statements.md)
+        + -- via -- adding rules | before the rule group
+          + use cases
+            + rules / you can NOT use | scope-down statement
+            + complex situations (_Example:_ labeling / -- followed by -- label matching)
+          + see 
+            + [Scope\-down statements](waf-rule-scope-down-statements.md)
+            + [AWS WAF rule statements](waf-rule-statements.md)
+      + run the rule groups | AFTER less expensive rules
+        + see [AWS WAF rule statements](waf-rule-statements.md)
+      + running order: Bot Control rule group, ATP rule groups 
+        + Reason: 🧠 less expensive rule group first 🧠
+  + **For distributed denial of service \(DDoS\) protection -> use Shield Advanced automatic application layer DDoS mitigation**
+    + enable
+      + Shield Advanced / automatic application layer DDoS mitigation
+    + if Shield Advanced detected DDoS attacks -> automatically 
+      + creating,
+      + evaluating,
+      + deploying custom AWS WAF mitigations / on your behalf 
+    + see 
+      + [AWS Shield Advanced overview](ddos-advanced-summary.md)
+      + [AWS Shield Advanced application layer \(layer 7\) protections](ddos-app-layer-protections.md)
+  + **Tune and configure token handling**
+    + -> best user experience 
+    + if you want to reduce operating costs & improve your end user's experience -> tune your token management immunity times -- to the -- longest / your security requirements permit
+      + This keeps the use of CAPTCHA puzzles and silent challenges to a minimum\.
+    + if you want to enable token sharing between protected applications -> configure a token domain list -- for -- your web ACL
+    + see 
+      + [Token domains and domain lists](waf-tokens-domains.md)
+      + [Timestamp expiration: token immunity times](waf-tokens-immunity-times.md)
+  + **Reject requests with arbitrary host specifications**
+    + == configure your protected resources / require that web requests's headers `Host`
+      + = targeted resource
+      + accept ONLY specific set of values
+        + _Example:_ `myExampleHost.com` & `www.myExampleHost.com` 
+  + **For Application Load Balancers / are origins for CloudFront distributions -> configure CloudFront & AWS WAF for proper token handling**
+    + requirements
+      + associate your web ACL -- to an -- Application Load Balancer
+      + deploy the Application Load Balancer -- as the -- origin for a CloudFront distribution
+    + see [Configuration required for Application Load Balancers that are CloudFront origins](waf-tokens-with-alb-and-cf.md)
+  + **Test and tune before deploying**
+    + Reason: 🧠 important for paid features 🧠
+    + see 
+      + [Testing and tuning your AWS WAF protections](web-acl-testing.md)
+      + [Testing and deploying AWS WAF Bot Control](waf-bot-control-deploying.md)
+      + [Testing and deploying ATP](waf-atp-deploying.md)
