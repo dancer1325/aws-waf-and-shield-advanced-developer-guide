@@ -1,33 +1,60 @@
 # Web access control lists \(web ACLs\)<a name="web-acl"></a>
 
-A web access control list \(web ACL\) gives you fine\-grained control over all of the HTTP\(S\) web requests that your protected resource responds to\. You can protect Amazon CloudFront, Amazon API Gateway, Application Load Balancer, AWS AppSync, Amazon Cognito, and AWS App Runner resources\. 
+* web ACL
+  * allows
+    * 👀fine-grained control | ALL HTTP\(S\) web requests / your protected resource -- responds -- to 👀
 
-You can use criteria like the following to allow or block requests: 
-+ IP address origin of the request
-+ Country of origin of the request
-+ String match or regular expression \(regex\) match in a part of the request
-+ Size of a particular part of the request
-+ Detection of malicious SQL code or scripting 
+* 👀possible criteria -- to -- ALLOW or BLOCK requests 👀 
+  + IP address origin -- of the -- request
+  + Country of origin -- of the -- request
+  + String match or regular expression \(regex\) match -- in a -- part of the request
+  + Size of a particular part -- of the -- request
+  + Detection of malicious SQL code or scripting 
+  + combination of previous ones
+    + -- via --  logical operators
++ 👀possible criteria -- to -- COUNT or BLOCK requests 👀
+  + meet the specified conditions
+  + \> specified number of requests | ANY 5\-minute period
++ run CAPTCHA puzzles and silent client session challenges -- against -- requests 
 
-You can also test for any combination of these conditions\. You can block or count web requests that not only meet the specified conditions, but also exceed a specified number of requests in any 5\-minute period\. You can combine conditions using logical operators\. You can also run CAPTCHA puzzles and silent client session challenges against requests\. 
+* AWS WAF rule statements
+  * == matching criteria + action to take
+    * [AWS WAF rule action](waf-rule-action.md)
+  * [AWS WAF rule statements](waf-rule-statements.md)
+  * ways to define them
+    * | your web ACL or
+    * | reusable rule groups / used -- by -- your web ACL
 
-You provide your matching criteria and the action to take on matches in AWS WAF rule statements\. You can define rule statements directly inside your web ACL and in reusable rule groups that you use in your web ACL\. For a full list of the options, see [AWS WAF rule statements](waf-rule-statements.md) and [AWS WAF rule action](waf-rule-action.md)\.
+* steps to specify your web request inspection & handling criteria
+  1. choose the web ACL default action
+     1. possible ones
+        1. Allow or
+        2. Block
+     2. see [Deciding on the default action for a web ACL](web-acl-default-action.md)
+  2. add any rule groups / you want to use | your web ACL
+     1. Managed rule groups -- usually contain -- rules / block web requests
+     2. see [Rule groups](waf-rule-groups.md)
+  3. specify additional matching criteria & handling instructions | >=1 rules
+     1. -- via -- `AND` or `OR`
+     2. if you want to negate a rule option -> use `NOT` statement
+     3. rate-based rule
+        1. see [Rules](waf-rules.md)
 
-To specify your web request inspection and handling criteria, perform the following tasks:
+* if you add >=1 rule | web ACL -> AWS WAF evaluates the rules -- based on the -- order / they're listed for the web ACL
+  * see [Web ACL rule and rule group evaluation](web-acl-processing.md)
 
-1. Choose the web ACL default action, either Allow or Block, for web requests that don't match any of the rules that you specify\. For more information, see [Deciding on the default action for a web ACL](web-acl-default-action.md)\.
-
-1. Add any rule groups that you want to use in your web ACL\. Managed rule groups usually contain rules that block web requests\. For information about rule groups, see [Rule groups](waf-rule-groups.md)\. 
-
-1. Specify additional matching criteria and handling instructions in one or more rules\. To add more than one rule, start with `AND` or `OR` rule statements and nest the rules that you want to combine under those\. If you want to negate a rule option, nest the rule in a NOT statement\. You can optionally use a rate\-based rule instead of a regular rule to limit the number of requests from any single IP address that meets the conditions\. For information about rules, see [Rules](waf-rules.md)\.
-
-If you add more than one rule to a web ACL, AWS WAF evaluates the rules in the order that they're listed for the web ACL\. For more information, see [Web ACL rule and rule group evaluation](web-acl-processing.md)\.
-
-When you create a web ACL, you specify the types of resources that you want to use it with\. For information, see [Creating a web ACL](web-acl-creating.md)\. After you define a web ACL, you can associate it with your resources to begin providing protection for them\. For more information, see [Associating or disassociating a web ACL with an AWS resource](web-acl-associating-aws-resource.md)\. 
+* when you create a web ACL -> you specify the types of resources / you want to use it with
+  * see [Creating a web ACL](web-acl-creating.md)
+* once web ACL is defined -> web ACL -- can be associated with -- your resources
+  * see [Associating or disassociating a web ACL with an AWS resource](web-acl-associating-aws-resource.md) 
 
 ## How AWS resources handle response delays from AWS WAF<a name="web-acl-processing-resource-default"></a>
 
-On some occasions, AWS WAF might encounter an internal error that delays the response to associated AWS resources about whether to allow or block a request\. On those occasions, CloudFront typically allows the request or serves the content, while the Regional services typically deny the request and don't serve the content\.
+* scenario
+  * AWS WAF -- might encounter an -- internal error / delays the response -- to -- associated AWS resources
+* 👀typical behavior 👀
+  * CloudFront allows the request or serves the content
+  * Regional services deny the request & do NOT serve the content
 
 **Topics**
 + [How AWS resources handle response delays from AWS WAF](#web-acl-processing-resource-default)
