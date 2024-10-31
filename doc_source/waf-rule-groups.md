@@ -1,23 +1,35 @@
 # Rule groups<a name="waf-rule-groups"></a>
 
-A rule group is a reusable set of rules that you can add to a web ACL\. For more information about web ACLs, see [Web access control lists \(web ACLs\)](web-acl.md)\.
-
-Rule groups fall into the following main categories: 
-+ Managed rule groups, which AWS Managed Rules and AWS Marketplace sellers create and maintain for you\.
-+ Your own rule groups, which you create and maintain\.
-+ Rule groups that are owned and managed by other services like AWS Firewall Manager and Shield Advanced\.
-
-**Differences between rule groups and web ACLs**  
-Rule groups and web ACLs both contain rules, which are defined in the same manner in both places\. Rule groups differ from web ACLs in the following ways: 
-+ Rule groups can't contain rule group reference statements\. 
-+ You can reuse a single rule group in multiple web ACLs by adding a rule group reference statement to each web ACL\. You can't reuse a web ACL\.
-+ Rule groups don't have default actions\. In a web ACL, you set a default action for each rule or rule group that you include\. Each individual rule inside a rule group or web ACL has an action defined\. 
-+ You don't directly associate a rule group with an AWS resource\. To protect resources using a rule group, you use the rule group in a web ACL\. 
-+ Web ACLs have a system\-defined maximum capacity of 5,000 web ACL capacity units \(WCUs\)\. Each rule group has a WCU setting that must be set at creation\. You can use this setting to calculate the additional capacity requirements that using a rule group would add to your web ACL\. For more information about WCUs, see [AWS WAF web ACL capacity units \(WCUs\)](aws-waf-capacity-units.md)\.
-
-For information about rules, see [Rules](waf-rules.md)\.
-
-This section provides guidance for creating and managing your own rule groups, describes the managed rule groups that are available to you, and provides guidance for using managed rule groups\. 
+* rule group
+  * == reusable set of rules / you can add | web ACL
+  * see [web ACLs](web-acl.md)
+  * main categories 
+    + Managed rule groups
+      + == created & maintained by 
+        + AWS Managed Rules
+        + AWS Marketplace sellers
+    + Your own rule groups
+      + == created & maintained by you
+    + Rule groups
+      + == owned & managed by other services (_Example:_ AWS Firewall Manager & Shield Advanced)
+  * **vs web ACLs**  
+    + BOTH contain rules / defined similarly
+    + Rule groups can NOT contain rule group reference statements 
+    + reusability
+      + rule group can be reused | MULTIPLE web ACLs
+        + -- via -- adding a rule group reference statement / EACH web ACL
+      + web ACL can NOT be reused
+    + default actions
+      + rule groups do NOT have
+      + default action / EACH rule OR rule group / included | web ACL 
+    + relation with an AWS resource
+      + rule group -- NOT associated directly with an -- AWS resource
+        + if you want to protect resources / -- via a -- rule group -> use the rule group | web ACL 
+    + capacity units
+      + web ACLs -- have a -- system-defined maximum capacity of 5,000 WCUs 
+      + rule group has a WCU setting / must be set | creation 
+      + see [AWS WAF web ACL capacity units \(WCUs\)](aws-waf-capacity-units.md)
+  * see [Rules](waf-rules.md) 
 
 **Topics**
 + [Managed rule groups](waf-managed-rule-groups.md)
