@@ -35,7 +35,7 @@
       + reduce bot traffic -- to your -- protected resources
 
 * benefits of using AWS WAF
-  + Additional protection against web attacks using criteria that you specify\. You can define criteria using characteristics of web requests such as the following:
+  + TODO:Additional protection against web attacks using criteria that you specify\. You can define criteria using characteristics of web requests such as the following:
     + IP addresses that requests originate from\.
     + Country that requests originate from\.
     + Values in request headers\.
@@ -59,19 +59,41 @@
     + AWS Marketplace
   + Real\-time metrics and sampled web requests
   + Automated administration -- via -- AWS WAF API
+  + minimize the effects of a DDoS attack -- via -- AWS WAF web ACLs 
 
 * 👀 if you want granular control over the protections -> use AWS WAF ALONE 👀
 * see [AWS WAF](waf-chapter.md)
 
 ## AWS Shield<a name="ddos-intro"></a>
 
-* TODO: 
-You can use AWS WAF web access control lists \(web ACLs\) to help minimize the effects of a Distributed Denial of Service \(DDoS\) attack\. For additional protection against DDoS attacks, AWS also provides AWS Shield Standard and AWS Shield Advanced\. AWS Shield Standard is automatically included at no extra cost beyond what you already pay for AWS WAF and your other AWS services\. 
-
-AWS Shield Advanced provides expanded DDoS attack protection for your Amazon EC2 instances, Elastic Load Balancing load balancers, CloudFront distributions, Route 53 hosted zones, and AWS Global Accelerator standard accelerators\. AWS Shield Advanced incurs additional charges\. Shield Advanced options and features include automatic application layer DDoS mitigation, advanced event visibility, and dedicated support from the Shield Response Team \(SRT\)\. If you own high visibility websites or are otherwise prone to frequent DDoS attacks, consider purchasing the additional protections that Shield Advanced provides\. For additional information, see [AWS Shield Advanced capabilities and options](ddos-advanced-summary-capabilities.md) and [Deciding whether to subscribe to AWS Shield Advanced and apply additional protections](ddos-advanced-summary-deciding.md)\.
+* types
+  * AWS Shield Standard
+    * free
+    * automatically included 
+  * AWS Shield Advanced
+    * provides 
+      * expanded DDoS attack protection -- for -- your
+        * Amazon EC2 instances, 
+        * Elastic Load Balancing load balancers,
+        * CloudFront distributions, 
+        * Route 53 hosted zones,
+        * AWS Global Accelerator standard accelerators
+      * automatic application layer DDoS mitigation
+      * advanced event visibility
+      * dedicated support -- from the -- Shield Response Team \(SRT\)
+    * pricing
+      * extra
+    * use cases
+      * high visibility websites
+      * prone to frequent DDoS attacks
+    * see [AWS Shield Advanced capabilities and options](ddos-advanced-summary-capabilities.md)
+* allows
+  * additional protecting  against DDoS attacks
+* see [Deciding whether to subscribe to AWS Shield Advanced and apply additional protections](ddos-advanced-summary-deciding.md)\.
 
 ## AWS Firewall Manager<a name="fms-intro"></a>
 
+* TODO: 
 AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall\. With Firewall Manager, you set up your protections just once and the service automatically applies them across your accounts and resources, even as you add new accounts and resources\. 
 
 For more information about Firewall Manager, see [AWS Firewall Manager](fms-chapter.md)\.
